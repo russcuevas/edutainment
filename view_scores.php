@@ -28,67 +28,111 @@ mysqli_close($conn);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Scores |EDUTAINMENT </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #7f00ff, #000000);
+            color: #fff !important;
+            margin: 0;
+        }
+
+        .container {
+            border: 2px solid #fff;
+            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 50px;
+            width: 100%;
+            height: auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            color: #fff !important;
+        }
+
+        .navbar {
+            background-color: #000000 !important;
+        }
+
+        .navbar-brand {
+            color: #fff;
+        }
+
+        .active {
+            color: #7f00ff !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: #bbb;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #fff;
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="dashboard.php">EDUTAINMENT </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="dashboard.php">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="view_scores.php">View Scores</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a style="color: white;" class="navbar-brand" href="dashboard.php"><img style="height: 50px;" src="logo.JPG" alt=""> EDUTAINMENT </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a style="color: white;" class="nav-link" href="dashboard.php">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color: white;" class="nav-link active" href="view_scores.php">View Scores</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<div class="container mt-5">
-    <h1>User Scores</h1>
-    <canvas id="scoreChart" width="400" height="200"></canvas> <!-- Canvas for Chart -->
+    <div class="container mt-5">
+        <h1>User Scores</h1>
+        <canvas id="scoreChart" width="400" height="200"></canvas> <!-- Canvas for Chart -->
 
-    <script>
-        // Get the data from PHP and pass it to JavaScript
-        const usernames = <?php echo json_encode($usernames); ?>;
-        const scores = <?php echo json_encode($scores); ?>;
+        <script>
+            // Get the data from PHP and pass it to JavaScript
+            const usernames = <?php echo json_encode($usernames); ?>;
+            const scores = <?php echo json_encode($scores); ?>;
 
-        // Create a bar chart using Chart.js
-        const ctx = document.getElementById('scoreChart').getContext('2d');
-        const scoreChart = new Chart(ctx, {
-            type: 'bar', // Bar chart
-            data: {
-                labels: usernames, // Usernames as labels
-                datasets: [{
-                    label: 'Total Score',
-                    data: scores, // Scores as the data
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)', // Bar color
-                    borderColor: 'rgba(54, 162, 235, 1)', // Border color
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true // Ensure the y-axis starts at 0
+            // Create a bar chart using Chart.js
+            const ctx = document.getElementById('scoreChart').getContext('2d');
+            const scoreChart = new Chart(ctx, {
+                type: 'bar', // Bar chart
+                data: {
+                    labels: usernames, // Usernames as labels
+                    datasets: [{
+                        label: 'Total Score',
+                        data: scores, // Scores as the data
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)', // Bar color
+                        borderColor: 'rgba(54, 162, 235, 1)', // Border color
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true // Ensure the y-axis starts at 0
+                        }
                     }
                 }
-            }
-        });
-    </script>
-</div>
+            });
+        </script>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

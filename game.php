@@ -437,11 +437,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
             });
         }
 
+        function playAudio(audioFile) {
+            const audio = new Audio(audioFile);
+            audio.play();
+        }
+
         function checkAnswer(selectedOption) {
             clearInterval(timer);
             const question = questions[currentQuestion];
             if (selectedOption === question.correct_option) {
                 score += 100;
+                playAudio('correct.mp3'); // Play correct answer sound
                 Swal.fire({
                     icon: 'success',
                     title: 'Correct!',
@@ -450,6 +456,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
                     showConfirmButton: false
                 });
             } else {
+                playAudio('wrong.mp3'); // Play wrong answer sound
                 Swal.fire({
                     icon: 'error',
                     title: 'Wrong Answer!',
@@ -468,6 +475,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
             clearInterval(timer);
             if (userAnswer.toLowerCase() === question.answer.toLowerCase()) {
                 score += 100;
+                playAudio('correct.mp3'); // Play correct answer sound
                 Swal.fire({
                     icon: 'success',
                     title: 'Correct!',
@@ -476,6 +484,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
                     showConfirmButton: false
                 });
             } else {
+                playAudio('wrong.mp3'); // Play wrong answer sound
                 Swal.fire({
                     icon: 'error',
                     title: 'Wrong Answer!',
@@ -494,6 +503,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
             clearInterval(timer);
             if (userAnswer.toLowerCase() === question.answer.toLowerCase()) {
                 score += 100;
+                playAudio('correct.mp3'); // Play correct answer sound
                 Swal.fire({
                     icon: 'success',
                     title: 'Correct!',
@@ -502,6 +512,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
                     showConfirmButton: false
                 });
             } else {
+                playAudio('wrong.mp3'); // Play wrong answer sound
                 Swal.fire({
                     icon: 'error',
                     title: 'Wrong Answer!',
@@ -513,6 +524,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
             currentQuestion++;
             setTimeout(showQuestion, 3000); // Delay before showing the next question
         }
+
 
 
         function startTimer() {
