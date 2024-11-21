@@ -1,0 +1,10 @@
+1. Setup Xampp and Import sql
+2. Open Vs code
+3. The style of each page are internal
+4. You can modified the design in html docs only
+5. The mysql database is server that stored in
+ 
+6. Super admin is static 
+User: admin Pass: 123admin
+
+7. users are need to registered
