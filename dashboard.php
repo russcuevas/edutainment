@@ -152,7 +152,7 @@ $isAdmin = $user['role'] == 'admin';
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a style="color: white !important;" class="navbar-brand" href="login.php"><img style="height: 50px;" src="logo.JPG" alt=""> EDUTAINMENT </a>
+            <a style="color: white !important;" class="navbar-brand" href="login.php"><img src="logo.JPG" width="40px" height="40px"></img> EDUTAINMENT: A Game-Based Learning Website </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

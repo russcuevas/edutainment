@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
             background-size: 400% 400%;
             animation: gradientAnimation 10s ease infinite;
             font-family: 'Arial', sans-serif;
+            cursor: none;
         }
 
         /* Styles for the countdown */
@@ -60,6 +61,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
             font-size: 3rem;
             font-weight: bold;
             color: white;
+        }
+
+        .custom-cursor {
+            position: absolute;
+            width: 32px;
+            /* Adjust size of the cursor */
+            height: 32px;
+            background: url('cursor.gif') no-repeat center center;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease-in-out;
         }
 
         /* Styles for the blurred backdrop */
@@ -232,9 +245,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
 </head>
 
 <body>
-    <nav style="background-color: #000000 !important;" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="custom-cursor" id="cursor"></div>
+
+    <nav style="background-color: #000000 !important; cursor: none;" class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a style="color: #7f00ff !important;" class="navbar-brand" href="dashboard.php">EDUTAINMENT </a>
+            <a style="color: #7f00ff !important;" class="navbar-brand" href="dashboard.php"><img src="logo.JPG" width="40px" height="40px"></img> EDUTAINMENT: A Game-Based Learning Website </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -624,6 +639,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
                         showQuestion(); // Start the game after countdown ends
                     }
                 }, 1000); // Update every second (1000ms)
+            });
+        });
+    </script>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+
+        // Update cursor position on mouse move
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.pageX - cursor.offsetWidth / 2}px`;
+            cursor.style.top = `${e.pageY - cursor.offsetHeight / 2}px`;
+        });
+
+        // Optional: Add hover effect to make cursor slightly bigger when hovering over links
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
             });
         });
     </script>
